@@ -3,7 +3,8 @@ var OmdbSearchResults;
 function OmdbSearch(params) {
   var target = params.target;
   var type;
-  render();
+  OmdbSearchResults = new OmdbSearchResults({ target: '#modal-search-results' });
+
   bindEvents();
 
   return {
@@ -12,11 +13,13 @@ function OmdbSearch(params) {
 
   function setInputType(selectedType) {
     type = selectedType;
+    render();
+    OmdbSearchResults.setData();
   }
 
   function render() {
+    $(target).empty();
     $(target).append(buildHtml());
-    OmdbSearchResults = new OmdbSearchResults({ target: '#modal-search-results' });
   }
 
   function buildHtml() {
@@ -32,7 +35,8 @@ function OmdbSearch(params) {
   }
 
   function bindEvents() {
-    $('#search-button').on('click', function() {
+    $(target).on('click', '#search-button', function(e) {
+      e.preventDefault();
       var data = {
         query: $(this).siblings().find('input').val(),
         type: type

@@ -1,6 +1,8 @@
 function OmdbSearchResults(params) {
   var target = params.target;
 
+  bindEvents();
+
   return {
     setData: setData
   }
@@ -11,11 +13,12 @@ function OmdbSearchResults(params) {
 
   function render(data) {
     $(target).empty();
-    $(target).append(buildHtml(data));
-    $('.collapsible').collapsible({
-      accordion : false
-    });
-    bindEvents();
+    if (data) {
+      $(target).append(buildHtml(data));
+      $('.collapsible').collapsible({
+        accordion : false
+      });
+    }
   }
 
   function buildHtml(data) {
@@ -34,7 +37,7 @@ function OmdbSearchResults(params) {
   }
 
   function bindEvents() {
-    $('.collapsible-header').on('click', function() {
+    $(target).on('click', '.collapsible-header', function() {
       var $selectedHeader = $(this);
       var $selectedBody = $(this).siblings('.collapsible-body');
       var data = {
