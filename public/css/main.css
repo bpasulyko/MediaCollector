@@ -8,10 +8,27 @@
 }
 
 input[type=text]:focus+label {
-  color:#d50000!important;
+  color:#fff!important;
 }
 
 input[type=text]:focus {
-  border-bottom: 1px solid #d50000!important;
-  box-shadow: 0 1px 0 0 #d50000!important;
+  border-bottom: 1px solid #fff!important;
+  box-shadow: 0 1px 0 0 #fff!important;
+}
+
+#modal-search-results {
+  overflow: auto;
+  max-height: 300px;
+}
+
+#modal-search-results img {
+  width:70%;
+}
+
+.result-detals-footer {
+  padding-top:40px;
+}
+
+.result-detals-footer span {
+  padding-left:40px;
 }

@@ -29,7 +29,7 @@ function OmdbSearch(params) {
           <input id="icon_prefix" type="text">
           <label for="icon_prefix">Search</label>
         </div>
-        <button id="search-button" class="btn waves-effect right">GO</button>
+        <button id="search-button" class="btn waves-effect red darken-1 white-text right"><i class="material-icons left">search</i> Search</button>
       </form>
     `;
   }
@@ -39,8 +39,10 @@ function OmdbSearch(params) {
       e.preventDefault();
       var data = {
         query: $(this).siblings().find('input').val(),
-        type: type
       };
+      if (type !== 'game') {
+        data.type = type;
+      }
       $.ajax({
         url: '/search',
         type: 'POST',
