@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var db;
-MongoClient.connect('mongodb://bpasulyko:bpasulyko@ds015953.mlab.com:15953/test-db', function(err, database) {
+MongoClient.connect('mongodb://bpasulyko:bpasulyko@ds025583.mlab.com:25583/collection', function(err, database) {
   if (err) return console.log(err);
   db = database;
   app.listen(3000, function() {
@@ -50,5 +50,12 @@ app.post('/saveItem', function(req, res) {
     if (err) return console.log(err);
     console.log('saved to database');
     res.end(JSON.stringify(result));
+  });
+});
+
+app.post('/loadItems', function (req, res) {
+  db.collection(req.body.collection).find().toArray(function(err, results) {
+    console.log(results)
+    res.end(JSON.stringify(results))
   });
 });

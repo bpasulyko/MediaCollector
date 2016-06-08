@@ -22,16 +22,46 @@ function setupPageView() {
 
 function initializeMoviePageView() {
   $pageTitle.html('<i class="material-icons left">theaters</i>Movies');
+  new ItemListView({
+    target: '#main',
+    type: 'movie',
+    genre: true,
+    year: true,
+    platform: false,
+    inProgress: false,
+    watched: true,
+    completed: false
+  });
   $('#main').append('<h1>MOVIES</h1>');
 }
 
 function initializeTvShowPageView() {
   $pageTitle.html('<i class="material-icons left">airplay</i>TV Shows');
+  new ItemListView({
+    target: '#main',
+    type: 'series',
+    genre: true,
+    year: true,
+    platform: false,
+    inProgress: true,
+    watched: false,
+    completed: true
+  });
   $('#main').append('<h1>TV</h1>');
 }
 
 function initializeGamePageView() {
   $pageTitle.html('<i class="material-icons left">games</i>Games');
+  new ItemListView({
+    target: '#main',
+    type: 'game',
+    genre: true,
+    year: true,
+    platform: true,
+    inProgress: true,
+    watched: false,
+    completed: true
+  });
   $('#main').append('<h1>GAMES</h1>');
 }
 
