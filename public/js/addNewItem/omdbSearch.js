@@ -37,21 +37,25 @@ function OmdbSearch(params) {
   function bindEvents() {
     $(target).on('click', '#search-button', function(e) {
       e.preventDefault();
-      var data = {
-        query: $(this).siblings().find('input').val(),
-      };
-      if (type !== 'game') {
-        data.type = type;
+      getItemDataBasedOnSearch($(this).siblings().find('input'));
+    });
+  }
+
+  function getItemDataBasedOnSearch($inputField) {
+    var data = {
+      query: $inputField.val(),
+    };
+    if (type !== 'game') {
+      data.type = type;
+    }
+    $.ajax({
+      url: '/search',
+      type: 'POST',
+      data: data,
+      datatype: 'json',
+      success: function(result) {
+        omdbSearchResults.setData(JSON.parse(result).Search)
       }
-      $.ajax({
-        url: '/search',
-        type: 'POST',
-        data: data,
-        datatype: 'json',
-        success: function(result) {
-          omdbSearchResults.setData(JSON.parse(result).Search)
-        }
-      });
     });
   }
 }

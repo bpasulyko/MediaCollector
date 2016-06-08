@@ -13,7 +13,7 @@ function OmdbSearchResults(params) {
   }
 
   function render(data) {
-    itemDate = {};
+    itemData = {};
     $(target).empty();
     if (data) {
       $(target).append(buildHtml(data));
