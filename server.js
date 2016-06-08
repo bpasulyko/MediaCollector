@@ -21,6 +21,18 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/movies', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/tvshows', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/games', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.post('/search', function (req, res) {
   omdbApi.search(req.body, function(err, data) {
   	res.end(JSON.stringify(data));

@@ -1,4 +1,4 @@
-var AddItemModal;
+var addItemModal;
 
 function AddItemDropdown(params) {
   var target = params.target;
@@ -7,7 +7,7 @@ function AddItemDropdown(params) {
 
   function render() {
     $(target).append(buildHtml());
-    AddItemModal = new AddItemModal();
+    addItemModal = new AddItemModal();
     $('.modal-trigger').leanModal();
   }
 
@@ -28,7 +28,7 @@ function AddItemDropdown(params) {
     });
 
     $('.modal-trigger').on('click', function() {
-      AddItemModal.setType($(this).attr('data-type'));
+      addItemModal.setType($(this).attr('data-type'));
     });
   }
 }
