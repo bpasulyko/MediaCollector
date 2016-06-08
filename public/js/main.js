@@ -3,7 +3,6 @@ var $pageTitle;
 
 $(document).ready(function() {
   setupPageView();
-  initializePageComponents();
 });
 
 function setupPageView() {
