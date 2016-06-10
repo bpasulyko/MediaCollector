@@ -5,8 +5,6 @@
     <title>Media Collector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="packages/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="packages/react.js"></script>
-    <script type="text/javascript" src="packages/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/addNewItem/searchResultDetails.js"></script>
     <script type="text/javascript" src="js/addNewItem/omdbSearchResults.js"></script>
@@ -14,6 +12,7 @@
     <script type="text/javascript" src="js/addNewItem/addItemModal.js"></script>
     <script type="text/javascript" src="js/addNewItem/addItemDropdown.js"></script>
     <script type="text/javascript" src="js/itemListView.js"></script>
+    <script type="text/javascript" src="js/item.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -21,7 +20,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="grey darken-4">
     <header>
       <nav class="red darken-4">
         <div class="nav-wrapper container">
@@ -41,7 +40,9 @@
         </ul>
       </nav>
     </header>
-    <main id="main" class="container"></main>
+    <main id="main" class="container">
+      <div id="item-grid" class="row"></div>
+    </main>
     <footer class="page-footer red darken-4">
       <div class="container">
         <div class="row">

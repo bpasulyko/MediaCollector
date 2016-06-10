@@ -7,6 +7,7 @@ function ItemListView(params) {
   var inProgress = params.inProgress ? params.inProgress : true;
   var watched = params.watched ? params.watched : true;
   var completed = params.completed ? params.completed : true;
+  var played = params.played ? params.played : true;
 
   loadData();
 
@@ -20,6 +21,13 @@ function ItemListView(params) {
       data: data,
       datatype: 'json',
       success: function(result) {
+        var item = new Item({ target: target });
+        var resultList = JSON.parse(result).sort(function (a,b) {
+          return a.title.toLowerCase() > b.title.toLowerCase();
+        });
+        resultList.forEach(function(obj) {
+          item.render(obj);
+        });
       }
     });
   }
