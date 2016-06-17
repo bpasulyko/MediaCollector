@@ -26,7 +26,7 @@ function SearchResultDetails() {
     var title = type === 'movie' ? data.title : data.name;
     return `
       <div class="row">
-        <div class="col s3 center">
+        <div class="col s6 l3 center">
           <img src="${imageUrl}" />
           <div>
             <button class="left change-picture btn-floating waves-effect red darken-4 white-text"><i class="material-icons">skip_previous</i></button>
@@ -34,7 +34,7 @@ function SearchResultDetails() {
             <button class="right change-picture btn-floating waves-effect red darken-4 white-text"><i class="material-icons">skip_next</i></button>
           </div>
         </div>
-        <div class="col s9">
+        <div class="col s6 l9">
           <h4>${title} (${year})</h4>
           <span>${data.overview}</span>
           <div class="row result-details-footer right">
