@@ -14,7 +14,7 @@ function OmdbSearch(params) {
   function setInputType(selectedType) {
     type = selectedType;
     render();
-    omdbSearchResults.setData();
+    omdbSearchResults.setData({});
   }
 
   function render() {
@@ -49,7 +49,7 @@ function OmdbSearch(params) {
       type: 'GET',
       datatype: 'json',
       success: function(result) {
-        omdbSearchResults.setData(result.results, type)
+        omdbSearchResults.setData({ data: result.results, type: type, search: query });
       }
     });
   }
