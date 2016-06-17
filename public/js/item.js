@@ -1,6 +1,6 @@
 function Item(params) {
   function render(data) {
-    var poster = data.poster;
+    var poster = window.config.images.base_url + window.config.images.poster_sizes[1] + data.poster;
     $(params.target).append(`
       <div class="col s3 l2">
         <img src="${poster}" />

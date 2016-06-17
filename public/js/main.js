@@ -5,20 +5,26 @@ var addItemDropdown;
 var $pageTitle;
 
 $(document).ready(function() {
-  getConfigData();
   $(".main-nav-button").sideNav();
-  setupPageView();
+  getConfigData()
+    .then(setupPageView)
+    .catch(function () {
+      console.log('ERROR');
+    });
 });
 
 function getConfigData() {
-  $.ajax({
-    url: 'http://api.themoviedb.org/3/configuration?api_key=' + window.apiKey,
-    type: 'GET',
-    datatype: 'json',
-    success: function(result) {
-      window.config = result;
-    }
-  });
+  return Promise.resolve(
+    $.ajax({
+      url: window.mainUrl + 'configuration?api_key=' + window.apiKey,
+      type: 'GET',
+      datatype: 'json',
+      success: function(result) {
+        window.config = result;
+        return Promise.resolve();
+      }
+    })
+  );
 }
 
 function setupPageView() {
@@ -38,9 +44,6 @@ function initializeMoviePageView() {
   new ItemListView({
     target: '#item-grid',
     type: 'movie',
-    platform: false,
-    inProgress: false,
-    completed: false
   });
 }
 
@@ -48,9 +51,7 @@ function initializeTvShowPageView() {
   $pageTitle.html('<i class="material-icons left">airplay</i>TV Shows');
   new ItemListView({
     target: '#item-grid',
-    type: 'series',
-    platform: false,
-    watched: false,
+    type: 'tv',
   });
 }
 
