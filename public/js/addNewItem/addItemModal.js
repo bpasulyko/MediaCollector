@@ -1,13 +1,13 @@
-var omdbSearch;
+var tmdbSearch;
 
 function AddItemModal() {
-  omdbSearch = new OmdbSearch({ target: '#modal-search-form' });
+  tmdbSearch = new TmdbSearch({ target: '#modal-search-form' });
 
   return {
     setType: setType
   }
 
   function setType(type) {
-    omdbSearch.setInputType(type);
+    tmdbSearch.setInputType(type);
   }
 }

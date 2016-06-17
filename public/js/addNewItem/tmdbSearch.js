@@ -1,9 +1,9 @@
-var omdbSearchResults;
+var tmdbSearchResults;
 
-function OmdbSearch(params) {
+function TmdbSearch(params) {
   var target = params.target;
   var type;
-  omdbSearchResults = new OmdbSearchResults({ target: '#modal-search-results' });
+  tmdbSearchResults = new TmdbSearchResults({ target: '#modal-search-results' });
 
   bindEvents();
 
@@ -14,7 +14,7 @@ function OmdbSearch(params) {
   function setInputType(selectedType) {
     type = selectedType;
     render();
-    omdbSearchResults.setData({});
+    tmdbSearchResults.setData({});
   }
 
   function render() {
@@ -49,7 +49,7 @@ function OmdbSearch(params) {
       type: 'GET',
       datatype: 'json',
       success: function(result) {
-        omdbSearchResults.setData({ data: result.results, type: type, search: query });
+        tmdbSearchResults.setData({ data: result.results, type: type, search: query });
       }
     });
   }

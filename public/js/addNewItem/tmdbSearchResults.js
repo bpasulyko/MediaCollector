@@ -1,6 +1,6 @@
 var searchResultDetails;
 
-function OmdbSearchResults(params) {
+function TmdbSearchResults(params) {
   var target = params.target;
   var itemData = {};
   var itemType;
