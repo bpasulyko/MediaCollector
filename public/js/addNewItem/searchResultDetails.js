@@ -1,6 +1,7 @@
 function SearchResultDetails() {
   var $target;
   var data;
+  var type;
 
   return {
     setData: setData
@@ -9,73 +10,51 @@ function SearchResultDetails() {
   function setData(params) {
     $target = params.target;
     data = params.data;
+    type = params.type;
 
     $target.append(buildItemDetails());
-    $('select').material_select();
     bindEvents();
   }
 
   function buildItemDetails() {
+    var imageUrl = window.config.images.base_url + window.config.images.poster_sizes[1] + data.poster_path;
+    var year = type === 'movie' ? data.release_date.split('-')[0] : data.first_air_date.split('-')[0];
+    var title = type === 'movie' ? data.title : data.name;
     return `
       <div class="row">
         <div class="col s3 center">
-          <img src="${data.Poster}" />
+          <img src="${imageUrl}" />
         </div>
         <div class="col s9">
-          <h4>${data.Title} (${data.Year})</h4>
-          <span>${data.Plot}</span>
-          <div class="row result-detals-footer">
-            <div class="additional-options left">
-              ${renderAdditionalOptions()}
-            </span>
-            <button id="add-item-button" class="right btn-floating waves-effect red darken-4 white-text" data-id="${data.imdbID}"><i class="material-icons">add</i></button>
+          <h4>${title} (${year})</h4>
+          <span>${data.overview}</span>
+          <div class="row result-details-footer right">
+            <input type="checkbox" id="watched" /><label for="watched">Watched?</label>
+            <button id="add-item-button" class="right btn-floating waves-effect red darken-4 white-text" data-id="${data.id}"><i class="material-icons">add</i></button>
           </div>
         </div>
       </div>
     `;
   }
 
-  function renderAdditionalOptions() {
-    if (data.Type === 'movie') {
-      return `<input type="checkbox" id="watched" /><label for="watched">Watched?</label>`;
-    } else if (data.Type === 'series') {
-      return `
-        <input name="tv-show-group" type="radio" id="in-progress" /><label for="in-progress">In Progress</label>
-        <input name="tv-show-group" type="radio" id="completed" /><label for="completed">Completed?</label>
-      `;
-    } else if (data.Type === 'game') {
-      return `
-        <div class="input-field">
-          <select>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
-          <label>Platform</label>
-        </div>
-        <input name="tv-show-group" type="radio" id="in-progress" /><label for="in-progress">In Progress</label>
-        <input name="tv-show-group" type="radio" id="completed" /><label for="completed">Completed?</label>
-      `
-    }
-  }
-
   function bindEvents() {
     $target.on('click', '#add-item-button', function () {
-      var id = $(this).attr('data-id');
-      saveItem();
+      var watched = $(this).siblings('#watched').prop('checked');
+      saveItem(watched);
     });
   }
 
-  function saveItem() {
+  function saveItem(watched) {
+    var itemTitle = type === 'movie' ? data.title : data.name;
     var saveData = {
-      type: data.Type,
+      type: type,
       itemData: {
-        id: data.imdbID,
-        title: data.Title,
-        year: data.Year,
-        genre: data.Genre,
-        poster: data.Poster
+        id: data.id,
+        title: itemTitle,
+        release: type === 'movie' ? data.release_date : data.first_air_date,
+        genre: data.genre_ids.join(','),
+        poster: data.poster_path,
+        watched: watched,
       }
     }
 
@@ -87,7 +66,7 @@ function SearchResultDetails() {
       success: function(result) {
         if (JSON.parse(result).ok) {
           $('#add-item-modal').closeModal();
-          Materialize.toast(`${data.Title} added successfully!`, 5000, 'rounded');
+          Materialize.toast(`${itemTitle} added successfully!`, 5000, 'rounded');
         }
       }
     });

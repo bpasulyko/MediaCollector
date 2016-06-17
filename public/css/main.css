@@ -23,14 +23,20 @@ input[type=text]:focus {
 
 #modal-search-results img {
   width:70%;
+  border: 3px solid #BBB;
+  border-radius: 5px;
 }
 
-.result-detals-footer {
-  padding-top:40px;
+.collapsible-body {
+  padding-top:20px;
 }
 
-.result-detals-footer span {
-  padding-left:40px;
+.result-details-footer {
+  padding-top:50px;
+}
+
+.result-details-footer button {
+  margin-left:40px;
 }
 
 main img {

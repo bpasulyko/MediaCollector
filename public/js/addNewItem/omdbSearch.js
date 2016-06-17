@@ -42,19 +42,14 @@ function OmdbSearch(params) {
   }
 
   function getItemDataBasedOnSearch($inputField) {
-    var data = {
-      query: $inputField.val(),
-    };
-    if (type !== 'game') {
-      data.type = type;
-    }
+    var query = $inputField.val();
+    var url = window.mainUrl + 'search/' + type + '?api_key=' + window.apiKey + '&language=en&query=' + query;
     $.ajax({
-      url: '/search',
-      type: 'POST',
-      data: data,
+      url: url,
+      type: 'GET',
       datatype: 'json',
       success: function(result) {
-        omdbSearchResults.setData(JSON.parse(result).Search)
+        omdbSearchResults.setData(result.results, type)
       }
     });
   }
