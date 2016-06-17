@@ -20,15 +20,19 @@ function SearchResultDetails() {
   }
 
   function buildItemDetails() {
+    //// handle no posters returned and no posters in general
     var imageUrl = window.config.images.base_url + window.config.images.poster_sizes[1] + imageData.posters[0].file_path;
     var year = type === 'movie' ? data.release_date.split('-')[0] : data.first_air_date.split('-')[0];
     var title = type === 'movie' ? data.title : data.name;
     return `
       <div class="row">
         <div class="col s3 center">
-          <div id="change-picture-prev" class="change-picture"><i class="material-icons">skip_previous</i></div>
-          <img src="${imageUrl}" title="1 of ${imageData.posters.length}" />
-          <div id="change-picture-next" class="change-picture"><i class="material-icons">skip_next</i></div>
+          <img src="${imageUrl}" />
+          <div>
+            <button class="left change-picture btn-floating waves-effect red darken-4 white-text"><i class="material-icons">skip_previous</i></button>
+            <span>1 of ${imageData.posters.length}</span>
+            <button class="right change-picture btn-floating waves-effect red darken-4 white-text"><i class="material-icons">skip_next</i></button>
+          </div>
         </div>
         <div class="col s9">
           <h4>${title} (${year})</h4>
@@ -54,7 +58,7 @@ function SearchResultDetails() {
   }
 
   function changeImage($arrow) {
-    var $image = $arrow.siblings('img');
+    var $image = $arrow.parent().siblings('img');
     var direction = $arrow.find('i').text();
     currentImageIndex = (direction === 'skip_previous') ?
               (currentImageIndex === 0 ? imageData.posters.length - 1 : currentImageIndex - 1) :
@@ -62,7 +66,7 @@ function SearchResultDetails() {
 
     var imageUrl = window.config.images.base_url + window.config.images.poster_sizes[1] + imageData.posters[currentImageIndex].file_path;
     $image.attr('src', imageUrl);
-    $image.attr('title', (currentImageIndex + 1) + ' of ' + imageData.posters.length);
+    $arrow.siblings('span').text((currentImageIndex + 1) + ' of ' + imageData.posters.length);
   }
 
   function saveItem(watched) {
