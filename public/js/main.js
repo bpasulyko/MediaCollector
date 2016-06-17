@@ -1,4 +1,5 @@
 window.apiKey = 'c61fe26ad89f613231e56e67cff3779d';
+window.mainUrl = 'http://api.themoviedb.org/3/';
 
 var addItemDropdown;
 var $pageTitle;
@@ -27,8 +28,6 @@ function setupPageView() {
     initializeMoviePageView();
   } else if (page === 'tvshows') {
     initializeTvShowPageView();
-  } else if (page === 'games') {
-    initializeGamePageView();
   } else {
     initializeHomePageView();
   }
@@ -51,15 +50,6 @@ function initializeTvShowPageView() {
     target: '#item-grid',
     type: 'series',
     platform: false,
-    watched: false,
-  });
-}
-
-function initializeGamePageView() {
-  $pageTitle.html('<i class="material-icons left">games</i>Games');
-  new ItemListView({
-    target: '#item-grid',
-    type: 'game',
     watched: false,
   });
 }

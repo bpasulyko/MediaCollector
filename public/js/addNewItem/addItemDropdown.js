@@ -15,8 +15,7 @@ function AddItemDropdown(params) {
     return `
       <ul id="add-dropdown" class="red darken-3 dropdown-content">
         <li><a href="#add-item-modal" class="modal-trigger waves-effect" id="add-movie" data-type="movie">Movie</a></li>
-        <li><a href="#add-item-modal" class="modal-trigger waves-effect" id="add-tv-show" data-type="series">TV Show</a></li>
-        <li><a href="#add-item-modal" class="modal-trigger waves-effect" id="add-game" data-type="game">Game</a></li>
+        <li><a href="#add-item-modal" class="modal-trigger waves-effect" id="add-tv-show" data-type="tv">TV Show</a></li>
       </ul>
     `;
   }
