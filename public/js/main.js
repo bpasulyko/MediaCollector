@@ -1,10 +1,24 @@
+window.apiKey = 'c61fe26ad89f613231e56e67cff3779d';
+
 var addItemDropdown;
 var $pageTitle;
 
 $(document).ready(function() {
+  getConfigData();
   $(".main-nav-button").sideNav();
   setupPageView();
 });
+
+function getConfigData() {
+  $.ajax({
+    url: 'http://api.themoviedb.org/3/configuration?api_key=' + window.apiKey,
+    type: 'GET',
+    datatype: 'json',
+    success: function(result) {
+      window.config = result;
+    }
+  });
+}
 
 function setupPageView() {
   $pageTitle = $('.brand-logo');
