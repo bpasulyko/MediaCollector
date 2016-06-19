@@ -30,9 +30,9 @@ function getConfigData() {
 function setupPageView() {
   $pageTitle = $('.brand-logo');
   var page = window.location.href.split('/').pop();
-  if (page === 'movies') {
+  if (page === 'movie') {
     initializeMoviePageView();
-  } else if (page === 'tvshows') {
+  } else if (page === 'tv') {
     initializeTvShowPageView();
   } else {
     initializeHomePageView();

@@ -15,9 +15,7 @@ function ItemListView(params) {
       datatype: 'json',
       success: function(result) {
         var item = new Item({ target: target });
-        var resultList = JSON.parse(result).sort(function (a,b) {
-          return a.title.toLowerCase() > b.title.toLowerCase();
-        });
+        var resultList = _.sortBy(JSON.parse(result), 'title');
         resultList.forEach(function(obj) {
           item.render(obj);
         });

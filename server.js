@@ -21,11 +21,11 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/movies', function (req, res) {
+app.get('/movie', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/tvshows', function (req, res) {
+app.get('/tv', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 

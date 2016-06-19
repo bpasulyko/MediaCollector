@@ -14,6 +14,7 @@ function SearchResultDetails() {
     data = params.data;
     type = params.type;
     imageData = params.imageData;
+    currentImageIndex = 0;
 
     $target.append(buildItemDetails());
     bindEvents();
@@ -91,7 +92,7 @@ function SearchResultDetails() {
       success: function(result) {
         if (JSON.parse(result).ok) {
           $('#add-item-modal').closeModal();
-          Materialize.toast(`${itemTitle} added successfully!`, 5000, 'rounded');
+          Materialize.toast(`<a href="/${type}">${itemTitle}</a>&nbsp;added successfully!`, 5000, 'rounded');
         }
       }
     });
