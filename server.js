@@ -29,22 +29,6 @@ app.get('/tv', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/games', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
-// app.post('/search', function (req, res) {
-//   omdbApi.search(req.body, function(err, data) {
-//   	res.end(JSON.stringify(data));
-//   });
-// });
-
-// app.post('/getItem', function (req, res) {
-//   omdbApi.get(req.body, function(err, data) {
-//   	res.end(JSON.stringify(data));
-//   });
-// });
-
 app.post('/saveItem', function(req, res) {
   db.collection(req.body.type).save(req.body.itemData, (err, result) => {
     if (err) return console.log(err);
